@@ -7,8 +7,8 @@ tfidf.addDocument('Là trường thành viên của ĐHQG-HCM, trường ĐH CNT
 tfidf.addDocument('Là trường thành viên của ĐHQG-HCM, trường ĐH CNTT có nhiệm vụ đào tạo nguồn nhân lực công nghệ thông tin góp phần tích cực vào sự phát triển của nền công nghiệp công nghệ thông tin Việt Nam');
 tfidf.addDocument('UIT có đội ngũ cán bộ, giảng viên với trình độ chuyên môn cao, đáp ứng được yêu cầu đào tạo và nghiên cứu khoa học theo định hướng đại học nghiên cứu');
 
-console.log("Công nghệ Thông tin =====================");
-tfidf.tfidfs('Công nghệ Thông tin', function(i, measure) {
+console.log("Thông tin =====================");
+tfidf.tfidfs('Thông tin', function(i, measure) {
     console.log('document #' + i + ' is ' + measure);
 });
 
