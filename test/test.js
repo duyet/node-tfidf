@@ -1,9 +1,3 @@
-# node-tfidf
-Calc TF-IDF string for Nodejs 
-
-Term Frequency–Inverse Document Frequency (tf-idf) is implemented to determine how important a word (or words) is to a document relative to a corpus. The following example will add four documents to a corpus and determine the weight of the word "node" and then the weight of the word "ruby" in each document.
-
-```js
 var TfIdf = require('../');
 var tfidf = new TfIdf();
 
@@ -22,20 +16,3 @@ console.log("ĐHQG-HCM =====================");
 tfidf.tfidfs('ĐHQG-HCM', function(i, measure) {
     console.log('document #' + i + ' is ' + measure);
 });
-```
-
-The above outputs:
-```
-Công nghệ Thông tin =====================
-document #0 is 10
-document #1 is 4
-document #2 is 9
-document #3 is 9
-document #4 is 0
-ĐHQG-HCM =====================
-document #0 is 2.4462871026284194
-document #1 is 0
-document #2 is 2.4462871026284194
-document #3 is 2.4462871026284194
-document #4 is 0
-```

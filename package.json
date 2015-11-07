@@ -1,0 +1,34 @@
+{
+  "name": "node-tfidf",
+  "version": "0.0.1",
+  "description": "Calc TF-IDF string for Nodejs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/duyetdev/node-tfidf.git"
+  },
+  "keywords": [
+    "tfidf",
+    "vietnamese",
+    "node-tfidf",
+    "word",
+    "vector",
+    "duyetdev",
+    "tokenzier",
+    "ngram"
+  ],
+  "author": "Van-Duyet Le",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/duyetdev/node-tfidf/issues"
+  },
+  "homepage": "https://github.com/duyetdev/node-tfidf#readme",
+  "dependencies": {
+    "node-vntokenizer": "0.0.1",
+    "underscore": "^1.8.3",
+    "vietnamese-stopwords": "0.0.2"
+  }
+}
