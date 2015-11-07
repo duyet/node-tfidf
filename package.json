@@ -1,10 +1,10 @@
 {
   "name": "node-tfidf",
   "version": "0.0.1",
-  "description": "Calc TF-IDF string for Nodejs",
+  "description": "TF-IDF string for Nodejs",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node test/test.js"
   },
   "repository": {
     "type": "git",

@@ -16,3 +16,7 @@ console.log("ĐHQG-HCM =====================");
 tfidf.tfidfs('ĐHQG-HCM', function(i, measure) {
     console.log('document #' + i + ' is ' + measure);
 });
+
+console.log("\n\n-------- applied to individual documents ---------");
+console.log("ĐHQG-HCM in document 0: ", tfidf.tfidf('ĐHQG-HCM', 0));
+console.log("ĐHQG-HCM in document 1: ", tfidf.tfidf('ĐHQG-HCM', 1));
