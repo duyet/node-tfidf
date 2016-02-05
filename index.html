@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Node-tfidf by duyetdev</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Node-tfidf</h1>
+      <h2 class="project-tagline">Calc TF-IDF string for Nodejs </h2>
+      <a href="https://github.com/duyetdev/node-tfidf" class="btn">View on GitHub</a>
+      <a href="https://github.com/duyetdev/node-tfidf/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/duyetdev/node-tfidf/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h1>
+<a id="node-tfidf" class="anchor" href="#node-tfidf" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>node-tfidf</h1>
+
+<p>Calc TF-IDF string for Nodejs </p>
+
+<p>Term Frequency–Inverse Document Frequency (tf-idf) is implemented to determine how important a word (or words) is to a document relative to a corpus. The following example will add four documents to a corpus and determine the weight of the word "node" and then the weight of the word "ruby" in each document.</p>
+
+<h1>
+<a id="install" class="anchor" href="#install" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Install</h1>
+
+<div class="highlight highlight-source-shell"><pre>npm install node-tfidf</pre></div>
+
+<h1>
+<a id="example" class="anchor" href="#example" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Example</h1>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> TfIdf <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>node-tfidf<span class="pl-pds">'</span></span>);
+<span class="pl-k">var</span> tfidf <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">TfIdf</span>();
+
+<span class="pl-smi">tfidf</span>.<span class="pl-en">addDocument</span>(<span class="pl-s"><span class="pl-pds">'</span>Trường Đại học Công nghệ Thông tin, Đại học Quốc gia Thành phố Hồ Chí Minh (ĐHQG-HCM) là trường đại học công lập đào tạo về công nghệ thông tin và truyền thông (CNTT&amp;TT)<span class="pl-pds">'</span></span>);
+<span class="pl-smi">tfidf</span>.<span class="pl-en">addDocument</span>(<span class="pl-s"><span class="pl-pds">'</span>được thành lập theo quyết định số 134/2006/QĐ-TTg ngày 08/06/2006 của Thủ tướng Chính phủ trên cơ sở Trung tâm Phát triển Công nghệ Thông tin<span class="pl-pds">'</span></span>);
+<span class="pl-smi">tfidf</span>.<span class="pl-en">addDocument</span>(<span class="pl-s"><span class="pl-pds">'</span>Là trường thành viên của ĐHQG-HCM, trường ĐH CNTT có nhiệm vụ đào tạo nguồn nhân lực công nghệ thông tin góp phần tích cực vào sự phát triển của nền công nghiệp công nghệ thông tin Việt Nam<span class="pl-pds">'</span></span>);
+<span class="pl-smi">tfidf</span>.<span class="pl-en">addDocument</span>(<span class="pl-s"><span class="pl-pds">'</span>Là trường thành viên của ĐHQG-HCM, trường ĐH CNTT có nhiệm vụ đào tạo nguồn nhân lực công nghệ thông tin góp phần tích cực vào sự phát triển của nền công nghiệp công nghệ thông tin Việt Nam<span class="pl-pds">'</span></span>);
+<span class="pl-smi">tfidf</span>.<span class="pl-en">addDocument</span>(<span class="pl-s"><span class="pl-pds">'</span>UIT có đội ngũ cán bộ, giảng viên với trình độ chuyên môn cao, đáp ứng được yêu cầu đào tạo và nghiên cứu khoa học theo định hướng đại học nghiên cứu<span class="pl-pds">'</span></span>);
+
+<span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-s"><span class="pl-pds">"</span>UIT =====================<span class="pl-pds">"</span></span>);
+<span class="pl-smi">tfidf</span>.<span class="pl-en">tfidfs</span>(<span class="pl-s"><span class="pl-pds">'</span>UIT<span class="pl-pds">'</span></span>, <span class="pl-k">function</span>(<span class="pl-smi">i</span>, <span class="pl-smi">measure</span>) {
+    <span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-s"><span class="pl-pds">'</span>document #<span class="pl-pds">'</span></span> <span class="pl-k">+</span> i <span class="pl-k">+</span> <span class="pl-s"><span class="pl-pds">'</span> is <span class="pl-pds">'</span></span> <span class="pl-k">+</span> measure);
+});
+
+<span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-s"><span class="pl-pds">"</span>ĐHQG-HCM =====================<span class="pl-pds">"</span></span>);
+<span class="pl-smi">tfidf</span>.<span class="pl-en">tfidfs</span>(<span class="pl-s"><span class="pl-pds">'</span>ĐHQG-HCM<span class="pl-pds">'</span></span>, <span class="pl-k">function</span>(<span class="pl-smi">i</span>, <span class="pl-smi">measure</span>) {
+    <span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-s"><span class="pl-pds">'</span>document #<span class="pl-pds">'</span></span> <span class="pl-k">+</span> i <span class="pl-k">+</span> <span class="pl-s"><span class="pl-pds">'</span> is <span class="pl-pds">'</span></span> <span class="pl-k">+</span> measure);
+});</pre></div>
+
+<p>The above outputs:</p>
+
+<pre><code>UIT =====================
+document #0 is 0
+document #1 is 0
+document #2 is 0
+document #3 is 0
+document #4 is 1.91629073187415
+ĐHQG-HCM =====================
+document #0 is 2.4462871026284194
+document #1 is 0
+document #2 is 2.4462871026284194
+document #3 is 2.4462871026284194
+document #4 is 0
+</code></pre>
+
+<h3>
+<a id="applied-to-individual-documents" class="anchor" href="#applied-to-individual-documents" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>applied to individual documents</h3>
+
+<p>The following example measures the term "node" in the first and second documents.</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-smi">tfidf</span>.<span class="pl-en">tfidf</span>(<span class="pl-s"><span class="pl-pds">'</span>ĐHQG-HCM<span class="pl-pds">'</span></span>, <span class="pl-c1">0</span>));
+<span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-smi">tfidf</span>.<span class="pl-en">tfidf</span>(<span class="pl-s"><span class="pl-pds">'</span>ĐHQG-HCM<span class="pl-pds">'</span></span>, <span class="pl-c1">1</span>));</pre></div>
+
+<h3>
+<a id="load-documents-from-files-on-disk" class="anchor" href="#load-documents-from-files-on-disk" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>load documents from files on disk.</h3>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-smi">tfidf</span>.<span class="pl-en">addFileSync</span>(<span class="pl-s"><span class="pl-pds">'</span>data_files/one.txt<span class="pl-pds">'</span></span>);
+<span class="pl-smi">tfidf</span>.<span class="pl-en">addFileSync</span>(<span class="pl-s"><span class="pl-pds">'</span>data_files/two.txt<span class="pl-pds">'</span></span>);</pre></div>
+
+<h3>
+<a id="multiple-terms" class="anchor" href="#multiple-terms" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Multiple terms</h3>
+
+<p>Multiple terms can be measured as well, with their weights being added into a single measure value. </p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-s"><span class="pl-pds">"</span>Thông tin =====================<span class="pl-pds">"</span></span>);
+<span class="pl-smi">tfidf</span>.<span class="pl-en">tfidfs</span>(<span class="pl-s"><span class="pl-pds">'</span>Thông tin<span class="pl-pds">'</span></span>, <span class="pl-k">function</span>(<span class="pl-smi">i</span>, <span class="pl-smi">measure</span>) {
+    <span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-s"><span class="pl-pds">'</span>document #<span class="pl-pds">'</span></span> <span class="pl-k">+</span> i <span class="pl-k">+</span> <span class="pl-s"><span class="pl-pds">'</span> is <span class="pl-pds">'</span></span> <span class="pl-k">+</span> measure);
+});</pre></div>
+
+<p>The above outputs:  </p>
+
+<pre><code>Thông tin =====================
+document #0 is 5
+document #1 is 2
+document #2 is 4
+document #3 is 4
+document #4 is 0
+</code></pre>
+
+<h3>
+<a id="perform-your-own-tokenization" class="anchor" href="#perform-your-own-tokenization" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>perform your own tokenization</h3>
+
+<p>The examples above all use strings, which case to automatically tokenize the input. 
+If you wish to perform your own tokenization or other kinds of processing, you can do so, then pass in the resultant arrays later. </p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">var</span> TfIdf <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>node-tfidf<span class="pl-pds">'</span></span>);
+<span class="pl-k">var</span> tfidf <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">TfIdf</span>();
+
+<span class="pl-smi">tfidf</span>.<span class="pl-en">addDocument</span>([<span class="pl-s"><span class="pl-pds">'</span>document<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>about<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>node<span class="pl-pds">'</span></span>]);
+<span class="pl-smi">tfidf</span>.<span class="pl-en">addDocument</span>([<span class="pl-s"><span class="pl-pds">'</span>document<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>about<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>ruby<span class="pl-pds">'</span></span>]);
+<span class="pl-smi">tfidf</span>.<span class="pl-en">addDocument</span>([<span class="pl-s"><span class="pl-pds">'</span>document<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>about<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>ruby<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>node<span class="pl-pds">'</span></span>]);
+<span class="pl-smi">tfidf</span>.<span class="pl-en">addDocument</span>([<span class="pl-s"><span class="pl-pds">'</span>document<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>about<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>node<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>node<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>examples<span class="pl-pds">'</span></span>]);
+
+<span class="pl-smi">tfidf</span>.<span class="pl-en">tfidfs</span>([<span class="pl-s"><span class="pl-pds">'</span>node<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>ruby<span class="pl-pds">'</span></span>], <span class="pl-k">function</span>(<span class="pl-smi">i</span>, <span class="pl-smi">measure</span>) {
+    <span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-s"><span class="pl-pds">'</span>document #<span class="pl-pds">'</span></span> <span class="pl-k">+</span> i <span class="pl-k">+</span> <span class="pl-s"><span class="pl-pds">'</span> is <span class="pl-pds">'</span></span> <span class="pl-k">+</span> measure);
+});</pre></div>
+
+<h1>
+<a id="how-to-contribute" class="anchor" href="#how-to-contribute" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>How to contribute</h1>
+
+<ol>
+<li>Fork the project on Github</li>
+<li>Create a topic branch for your changes</li>
+<li>Ensure that you provide documentation and test coverage for your changes (patches won’t be accepted without)</li>
+<li>Create a pull request on Github (these are also a great place to start a conversation around a patch as early as possible)</li>
+</ol>
+
+<h1>
+<a id="license" class="anchor" href="#license" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>License</h1>
+
+<p>MIT License</p>
+
+<p>Copyright (c) 2015 Van-Duyet Le</p>
+
+<p>Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:</p>
+
+<p>The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.</p>
+
+<p>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/duyetdev/node-tfidf">Node-tfidf</a> is maintained by <a href="https://github.com/duyetdev">duyetdev</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+            <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-18218315-51");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+  </body>
+</html>
