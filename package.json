@@ -4,7 +4,9 @@
   "description": "TF-IDF string for Nodejs",
   "main": "index.js",
   "scripts": {
-    "test": "node test/test.js"
+    "test": "node test/test.js",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "repository": {
     "type": "git",
@@ -29,6 +31,8 @@
   "dependencies": {
     "node-vntokenizer": "0.0.1",
     "underscore": "^1.8.3",
-    "vietnamese-stopwords": "0.0.2"
-  }
+    "vietnamese-stopwords": "0.0.2",
+    "snyk": "^1.88.2"
+  },
+  "snyk": true
 }
