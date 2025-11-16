@@ -5,10 +5,15 @@
   "main": "index.js",
   "types": "index.d.ts",
   "scripts": {
-    "test": "node --test test/modern-test.js",
+    "test": "node --test test/modern-test.js && node --test test/advanced-test.js",
+    "test:basic": "node --test test/modern-test.js",
+    "test:advanced": "node --test test/advanced-test.js",
     "test:legacy": "node test/test.js",
     "test:all": "npm run test && npm run test:legacy",
-    "benchmark": "node benchmark/performance.js"
+    "benchmark": "node benchmark/performance.js",
+    "examples": "node examples/01-basic-usage.js && node examples/02-document-similarity.js && node examples/03-search-engine.js && node examples/04-advanced-features.js",
+    "lint": "eslint lib/ index.js test/ examples/ || true",
+    "lint:fix": "eslint lib/ index.js test/ examples/ --fix || true"
   },
   "repository": {
     "type": "git",

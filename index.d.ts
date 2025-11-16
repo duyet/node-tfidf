@@ -53,6 +53,34 @@ declare module 'node-tfidf' {
   }
 
   /**
+   * Search result
+   */
+  export interface SearchResult {
+    index: number;
+    score: number;
+    metadata: DocumentMetadata;
+  }
+
+  /**
+   * Similarity result
+   */
+  export interface SimilarityResult {
+    index: number;
+    similarity: number;
+    metadata: DocumentMetadata;
+  }
+
+  /**
+   * Corpus statistics
+   */
+  export interface CorpusStats {
+    documentCount: number;
+    vocabularySize: number;
+    totalTerms: number;
+    averageDocumentLength: number;
+  }
+
+  /**
    * Default tokenizer - splits on whitespace and punctuation
    */
   export class DefaultTokenizer implements Tokenizer {
@@ -110,6 +138,56 @@ declare module 'node-tfidf' {
     addFileSync(
       path: string,
       encoding?: BufferEncoding,
+      metadata?: DocumentMetadata
+    ): this;
+
+    /**
+     * Add a document from a file (asynchronous)
+     *
+     * @param path - File path
+     * @param encoding - File encoding (default: 'utf8')
+     * @param metadata - Optional metadata
+     * @returns Promise resolving to this (for method chaining)
+     */
+    addFile(
+      path: string,
+      encoding?: BufferEncoding,
+      metadata?: DocumentMetadata
+    ): Promise<this>;
+
+    /**
+     * Add multiple documents at once (batch operation)
+     *
+     * @param documents - Array of documents
+     * @param metadataArray - Optional array of metadata objects
+     * @returns this (for method chaining)
+     */
+    addDocuments(
+      documents: Array<string | string[]>,
+      metadataArray?: DocumentMetadata[]
+    ): this;
+
+    /**
+     * Remove a document from the corpus
+     *
+     * @param documentIndex - Index of the document to remove
+     * @returns this (for method chaining)
+     * @throws {RangeError} If document index is out of range
+     */
+    removeDocument(documentIndex: number): this;
+
+    /**
+     * Update a document in the corpus
+     *
+     * @param documentIndex - Index of the document to update
+     * @param document - New document content
+     * @param metadata - Optional metadata (merged with existing)
+     * @returns this (for method chaining)
+     * @throws {RangeError} If document index is out of range
+     */
+    updateDocument(
+      documentIndex: number,
+      document: string | string[],
       metadata?: DocumentMetadata
     ): this;
 
@@ -186,6 +264,68 @@ declare module 'node-tfidf' {
      * @throws {TypeError} If words is not an array
      */
     addStopwords(words: string[]): this;
+
+    /**
+     * Calculate cosine similarity between two documents
+     *
+     * @param docIndex1 - First document index
+     * @param docIndex2 - Second document index
+     * @returns Cosine similarity score (0-1)
+     * @throws {RangeError} If either document index is out of range
+     */
+    similarity(docIndex1: number, docIndex2: number): number;
+
+    /**
+     * Find most similar documents to a given document
+     *
+     * @param documentIndex - Reference document index
+     * @param limit - Number of similar documents to return (default: 5)
+     * @returns Similar documents sorted by similarity
+     * @throws {RangeError} If document index is out of range
+     */
+    findSimilar(documentIndex: number, limit?: number): SimilarityResult[];
+
+    /**
+     * Search for documents matching a query, ranked by relevance
+     *
+     * @param query - Search query (text or tokens)
+     * @param limit - Maximum results to return (default: 10)
+     * @param threshold - Minimum score threshold (default: 0)
+     * @returns Ranked search results
+     */
+    search(query: string | string[], limit?: number, threshold?: number): SearchResult[];
+
+    /**
+     * Get document metadata
+     *
+     * @param documentIndex - Document index
+     * @returns Document metadata
+     * @throws {RangeError} If document index is out of range
+     */
+    getMetadata(documentIndex: number): DocumentMetadata;
+
+    /**
+     * Find document index by metadata field
+     *
+     * @param field - Metadata field name
+     * @param value - Value to search for
+     * @returns Document index, or -1 if not found
+     */
+    findByMetadata(field: string, value: any): number;
+
+    /**
+     * Get all unique terms in the corpus
+     *
+     * @returns Array of unique terms
+     */
+    getVocabulary(): string[];
+
+    /**
+     * Get corpus statistics
+     *
+     * @returns Statistics about the corpus
+     */
+    getStats(): CorpusStats;
 
     /**
      * Get number of documents in corpus
