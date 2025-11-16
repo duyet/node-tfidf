@@ -2,9 +2,13 @@
 
 > **Modern, zero-dependency TF-IDF implementation for Node.js**
 
+[![CI/CD](https://github.com/duyetdev/node-tfidf/workflows/CI%2FCD/badge.svg)](https://github.com/duyetdev/node-tfidf/actions/workflows/ci.yml)
+[![CodeQL](https://github.com/duyetdev/node-tfidf/workflows/CodeQL%20Security%20Analysis/badge.svg)](https://github.com/duyetdev/node-tfidf/actions/workflows/codeql.yml)
+[![npm version](https://badge.fury.io/js/node-tfidf.svg)](https://www.npmjs.com/package/node-tfidf)
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Node Version](https://img.shields.io/badge/node-%3E%3D14.0.0-brightgreen.svg)](https://nodejs.org)
 [![Zero Dependencies](https://img.shields.io/badge/dependencies-0-success.svg)](package.json)
+[![Downloads](https://img.shields.io/npm/dm/node-tfidf.svg)](https://www.npmjs.com/package/node-tfidf)
 
 A beautifully simple, blazingly fast implementation of TF-IDF (Term Frequency-Inverse Document Frequency) for Node.js. Built with modern JavaScript, zero dependencies, and full TypeScript support.
 

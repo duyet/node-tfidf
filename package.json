@@ -10,10 +10,13 @@
     "test:advanced": "node --test test/advanced-test.js",
     "test:legacy": "node test/test.js",
     "test:all": "npm run test && npm run test:legacy",
+    "test:coverage": "c8 --reporter=lcov --reporter=text npm test",
     "benchmark": "node benchmark/performance.js",
     "examples": "node examples/01-basic-usage.js && node examples/02-document-similarity.js && node examples/03-search-engine.js && node examples/04-advanced-features.js",
     "lint": "eslint lib/ index.js test/ examples/ || true",
-    "lint:fix": "eslint lib/ index.js test/ examples/ --fix || true"
+    "lint:fix": "eslint lib/ index.js test/ examples/ --fix || true",
+    "validate": "npm run lint && npm run test:all",
+    "prepublishOnly": "npm run validate && npm run benchmark"
   },
   "repository": {
     "type": "git",
