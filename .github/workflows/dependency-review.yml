@@ -1,0 +1,38 @@
+name: Dependency Review
+
+on:
+  pull_request:
+    branches: [ main, develop ]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  dependency-review:
+    name: Review Dependencies
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Dependency Review
+      uses: actions/dependency-review-action@v3
+      with:
+        fail-on-severity: moderate
+        allow-licenses: MIT, Apache-2.0, BSD-3-Clause, BSD-2-Clause, ISC
+
+    - name: Verify zero dependencies
+      run: |
+        echo "Checking package.json..."
+        DEPS=$(node -e "const pkg = require('./package.json'); console.log(Object.keys(pkg.dependencies || {}).length)")
+        echo "Dependencies found: $DEPS"
+
+        if [ "$DEPS" != "0" ]; then
+          echo "❌ ERROR: This project must have ZERO dependencies!"
+          echo "Found $DEPS dependencies. Please remove them."
+          exit 1
+        else
+          echo "✅ Confirmed: Zero dependencies maintained"
+        fi

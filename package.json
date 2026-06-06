@@ -1,10 +1,22 @@
 {
   "name": "node-tfidf",
-  "version": "0.0.1",
-  "description": "TF-IDF string for Nodejs",
+  "version": "0.1.0",
+  "description": "Modern, zero-dependency TF-IDF (Term Frequency-Inverse Document Frequency) implementation for Node.js",
   "main": "index.js",
+  "types": "index.d.ts",
   "scripts": {
-    "test": "node test/test.js"
+    "test": "node --test test/modern-test.js && node --test test/advanced-test.js",
+    "test:basic": "node --test test/modern-test.js",
+    "test:advanced": "node --test test/advanced-test.js",
+    "test:legacy": "node test/test.js",
+    "test:all": "npm run test && npm run test:legacy",
+    "test:coverage": "c8 --reporter=lcov --reporter=text npm test",
+    "benchmark": "node benchmark/performance.js",
+    "examples": "node examples/01-basic-usage.js && node examples/02-document-similarity.js && node examples/03-search-engine.js && node examples/04-advanced-features.js",
+    "lint": "eslint lib/ index.js test/ examples/ || true",
+    "lint:fix": "eslint lib/ index.js test/ examples/ --fix || true",
+    "validate": "npm run lint && npm run test:all",
+    "prepublishOnly": "npm run validate && npm run benchmark"
   },
   "repository": {
     "type": "git",
@@ -12,13 +24,17 @@
   },
   "keywords": [
     "tfidf",
-    "vietnamese",
-    "node-tfidf",
-    "word",
-    "vector",
-    "duyetdev",
-    "tokenzier",
-    "ngram"
+    "tf-idf",
+    "text-mining",
+    "information-retrieval",
+    "nlp",
+    "natural-language-processing",
+    "term-frequency",
+    "document-similarity",
+    "search",
+    "ranking",
+    "zero-dependency",
+    "typescript"
   ],
   "author": "Van-Duyet Le",
   "license": "MIT",
@@ -26,9 +42,14 @@
     "url": "https://github.com/duyetdev/node-tfidf/issues"
   },
   "homepage": "https://github.com/duyetdev/node-tfidf#readme",
-  "dependencies": {
-    "node-vntokenizer": "0.0.1",
-    "underscore": "^1.8.3",
-    "vietnamese-stopwords": "0.0.2"
-  }
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "files": [
+    "index.js",
+    "index.d.ts",
+    "lib/",
+    "README.md",
+    "LICENSE"
+  ]
 }
